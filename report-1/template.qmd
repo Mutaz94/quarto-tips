@@ -1,0 +1,48 @@
+---
+title: Report-1 Template
+format:
+  report-1-pdf:
+    keep-tex: true  
+bibliography: bibliography.bib  
+---
+
+```{r}
+#| echo: false 
+#| warning: false
+library(tidyverse)
+library(gt)
+```
+
+# SUMMARY {#sec-summary}
+
+In the summary we can look at @fig-conc
+
+```{r}
+#| label: fig-conc 
+#| fig-cap: Concentration time profile 
+ggplot(Theoph, aes(Time, conc)) + geom_point()
+```
+
+\cleardoublepage
+
+```{r}
+#| label: tbl-conc 
+#| tbl-cap: Concentration for the first individual 
+Theoph |> 
+    filter(Subject == 1) |> 
+    gt()
+```
+
+# INTRODUCTION
+
+In introduction I want to reference [sec. @sec-summary]
+
+I want to cite base R package [@base]
+
+# REFERENCES 
+
+:::{#refs}
+:::
+
+
+

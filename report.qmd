@@ -1,0 +1,75 @@
+---
+title: "R in Pharma"
+author: 
+    - Mutaz Jaber
+    - Devin Pastoor
+report: 12345
+format: 
+    pdf: 
+        documentclass: scrreprt
+        number-sections: true
+        template-partials: 
+            - before-body.tex
+        toc: true
+        lof: true
+        lot: true
+        toc-title: Contents
+        crossref: 
+            lof-title: Figures 
+            lot-title: Tables 
+bibliography: references.bib
+biblio-style: authoryear
+cite-method: biblatex
+include-in-header: 
+    - text: |
+         \usepackage[headsepline,footsepline]{scrlayer-scrpage}
+         \pagestyle{scrheadings}
+         \lohead{R in Pharma 2023}
+         \rohead{Quarto Report}
+         \lofoot{R in Pharma}
+         \ifoot{\thepage}
+         \cofoot{} % empty 
+         \renewcommand*\chapterpagestyle{scrheadings}
+         \usepackage{tabularx}
+         \usepackage{mdframed}
+copyright: >
+    This is a Company Name. document that contains confidential information. It is intended solely for the recipient and must not be disclosed to any other party. This material may be used only for evaluating or conducting clinical investigations; any other proposed use requires written consent from Company Name.
+---
+
+```{r}
+#| echo: false 
+#| warning: false
+library(tidyverse)
+library(gt)
+```
+
+# SUMMARY {#sec-summary}
+
+In the summary we can look at @fig-conc
+
+```{r}
+#| label: fig-conc 
+#| fig-cap: Concentration time profile 
+ggplot(Theoph, aes(Time, conc)) + geom_point()
+```
+
+\cleardoublepage
+
+```{r}
+#| label: tbl-conc 
+#| tbl-cap: Concentration for the first individual 
+Theoph |> 
+    filter(Subject == 1) |> 
+    gt()
+```
+
+# INTRODUCTION
+
+In introduction I want to reference [sec. @sec-summary]
+
+I want to cite base R package [@base]
+
+# REFERENCES 
+
+:::{#refs}
+:::
